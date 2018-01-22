@@ -1,0 +1,2 @@
+- Install `base-setup.sh` first.
+- Then install `elderly-robot.sh` or `children-robot.sh` depending on what will this robot be used for.
