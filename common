@@ -1,8 +1,12 @@
+#!/bin/bash
+
+# https://askubuntu.com/questions/623933/how-to-create-a-rotation-animation-using-shell-script
 three_dot_animate() {
-    echo "$1."
+    echo -en "$1." "\r"
     sleep 0.5
-    echo "$1.."
+    echo -en "$1.." "\r"
     sleep 0.5
-    echo "$1..."
+    echo -en "$1..." "\r"
     echo ""
 }
+

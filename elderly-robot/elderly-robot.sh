@@ -34,6 +34,13 @@ if [ ! -d ~/_projects/elderly-robot-server/mqttBackend/node_modules/node-ghk ]; 
   cd ~/_projects/elderly-robot-server/mqttBackend/node_modules
   git clone --recursive https://github.com/aimlabmu/node-ghk.git
 
+  echo "This requires proxy setup, please fill in the lines."
+  read -p 'Username: ' usrV
+  read -p 'Password: ' pwV
+
+  export http_proxy="http://$usrV:$pwV@proxy-sa.mahidol:8080"
+  echo "Proxy exported succesfully."
+
   # cd to node-ghk and install
   cd node-ghk && npm install
 
