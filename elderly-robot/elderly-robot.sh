@@ -18,7 +18,11 @@ go get github.com/fogleman/gg
 ## Cloning elderly repo [input password required]
 three_dot_animate "Cloning elderly repo [input password required]"
 
-git clone https://tulakann@bitbucket.org/otalbs/elderly-robot-server.git /home/pi/_projects/elderly-robot-server
+projDir=/home/pi/_projects/elderly-robot-server
+
+if [ ! -d projDir ]; then
+  git clone https://tulakann@bitbucket.org/otalbs/elderly-robot-server.git $projDir
+fi
 
 ## Install npm dependencies
 three_dot_animate "Installing mqtt backend dependencies"
