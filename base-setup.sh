@@ -25,6 +25,10 @@ three_dot_animate "Next we will set GPIO pins for you"
 
 gpio mode 15 ALT0; gpio mode 16 ALT0
 
+three_dot_animate "We will also set 'enable_uart' in /boot/config.txt just in case it is not enable yet"
+
+sudo sed -i 's/enable_uart=0/enable_uart=1/g' /boot/config.txt
+
 echo "Done, set values: "
 gpio readall | head -n 8
 

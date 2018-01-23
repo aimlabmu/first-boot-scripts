@@ -8,5 +8,6 @@ three_dot_animate() {
     sleep 0.5
     echo -en "$1..." "\r"
     echo ""
+    echo ""
 }
 

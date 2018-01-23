@@ -38,7 +38,7 @@ if [ ! -d ~/_projects/elderly-robot-server/mqttBackend/node_modules/node-ghk ]; 
   cd ~/_projects/elderly-robot-server/mqttBackend/node_modules
   git clone --recursive https://github.com/aimlabmu/node-ghk.git
 
-  replaceTarget='/home/pi/_projects/elderly-robot-server/mqttBackend/node_modules/node-ghk/libiohook/src/x11/input_helper.c'
+  replaceTarget='/home/pi/_projects/elderly-robot-server/mqttBackend/node_modules/node-ghk/libuiohook/src/x11/input_helper.c'
   sed -i '1876s/XkbGetKeyboard/XkbGetMap/' $replaceTarget
   echo "Replaced XkbGetKeyboard with XkbGetMap in $replaceTarget"
 
