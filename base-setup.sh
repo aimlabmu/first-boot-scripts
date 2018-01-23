@@ -3,8 +3,7 @@
 source ./common
 
 ## raspi-config
-echo << EOF
-Please set these up:
+echo 'Please set these up:
   - Boot Options
     - Console Autologin
   - Interfacing Options
@@ -15,8 +14,7 @@ Please set these up:
   - Localisation/Internationalisation Options
     - Change keyboard layout
       - Keyboard Layout > Generic 101 > Other > en-US > en-US > OK
-      - Will have to reboot to see change.
-EOF
+      - Will have to reboot to see change.'
 
 sleep 5
 
@@ -34,7 +32,7 @@ gpio readall | head -n 8
 three_dot_animate "Settings default sound values"
 
 amixer cset numid=1 100%
-alsactl store
+sudo alsactl store
 
 echo "Done, set values: "
 cat /var/lib/alsa/asound.state | grep -A 13 control.1
