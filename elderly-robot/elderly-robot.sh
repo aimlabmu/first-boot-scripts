@@ -56,3 +56,23 @@ if [ ! -d ~/_projects/elderly-robot-server/mqttBackend/node_modules/node-ghk ]; 
   # back to mqttbackend
   cd ..
 fi
+
+## build mqtt backend to be ready to run
+three_dot_animate "Building mqtt backend"
+
+cd ~/_projects/elderly-robot-server/mqttBackend/
+npm run build
+
+echo "DONE building mqtt backend"
+
+## build goGUI to be ready to run
+three_dot_animate "Building go GUI app"
+
+cd ~/_projects/elderly-robot-server/gui/
+go build -o build/gui
+
+echo "DONE building go GUI"
+
+## make mqtt backend work as a service
+## configure mqtt service
+## add cron job to start everything automatically
