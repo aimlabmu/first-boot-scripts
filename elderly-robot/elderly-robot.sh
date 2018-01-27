@@ -63,7 +63,7 @@ three_dot_animate "Building mqtt backend"
 cd ~/_projects/elderly-robot-server/mqttBackend/
 npm run build
 
-echo "DONE building mqtt backend"
+echo "DONE building mqtt backend."
 
 ## build goGUI to be ready to run
 three_dot_animate "Building go GUI app"
@@ -71,22 +71,52 @@ three_dot_animate "Building go GUI app"
 cd ~/_projects/elderly-robot-server/gui/
 go build -o build/gui
 
-echo "DONE building go GUI"
+echo "DONE building go GUI."
+
 
 ## make mqtt backend work as a service
-## configure mqtt service
-## add cron job to start everything automatically
-## install dependencies for video recorder/manager
-## build video manager
-sudo apt-get install rabbitmq-server
-sudo pip3 install Celery
+three_dot_animate "Installing mqttBackend service"
 
+cd ~/_projects/elderly-robot-server/ServiceInstaller
+npm install
+sudo node installKeyboard.js
+# add ExecStartPre=/bin/sleep 30 to mqttkeyboard.service
+sudo sed -i 's/\[Service\]/\[Service\]\nExecStartPre=\/bin\/sleep 30/' /etc/systemd/system/mqttkeyboard.service
+# enable service to let it auto start
+sudo systemctl enable mqttkeyboard.service
+echo "mqttkeyboard.service is enabled."
+
+## install dependencies for video recorder/manager
+three_dot_animate "Installing dependencies for videoRecorder and videoManager"
+
+sudo apt-get install -y rabbitmq-server
+sudo pip3 install Celery
 go get -u golang.org/x/sys/...
 go get github.com/fsnotify/fsnotify
 go get github.com/jinzhu/gorm
 go get github.com/mattn/go-sqlite3
+echo "DONE installing videoManager dependencies."
 
-go build *
+## build video manager
+three_dot_animate "Building video manager"
 
-./videoManager
-```
+cd ~/_projects/elderly-robot-server/videoCapture/videoManager
+go build -o build/videoManager
+
+echo "DONE building videoManager."
+
+## symlink mainScript.sh from elderly-robot-server to ~/_scripts and add to cronjob later
+three_dot_animate "Symlinking mainScript.sh to ~/_scripts"
+ln -s ~/_projects/elderly-robot-server/bashScripts/mainScript.sh ~/_scripts/mainScript.sh
+
+echo "DONE symlinking."
+
+## add cron job to start everything automatically
+echo "From here you will need to do it yourself."
+echo "But don't worry, we have a clue for you."
+echo "---- FOCUS HERE ----"
+echo "Run 'crontab -e' command and choose nano as editor."
+echo "Then put following line in the bottom of the file:"
+echo "'@reboot bash /home/pi/_scripts/mainScript.sh 2>> /home/pi/cronlog.txt'"
+echo "--------------------"
+echo "And finally reboot the robot, you should be good to go. Good Luck."
