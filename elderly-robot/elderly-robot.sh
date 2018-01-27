@@ -92,8 +92,8 @@ echo "mqttkeyboard.service is enabled."
 ## install dependencies for video recorder/manager
 three_dot_animate "Installing dependencies for videoRecorder and videoManager"
 
-sudo apt-get install -y rabbitmq-server
-sudo pip3 install Celery
+sudo apt-get install -y rabbitmq-server portaudio19-dev
+sudo pip3 install Celery pyaudio pysoundfile
 go get -u golang.org/x/sys/...
 go get github.com/fsnotify/fsnotify
 go get github.com/jinzhu/gorm
