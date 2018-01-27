@@ -60,6 +60,7 @@ if [ ! -d ~/_projects/elderly-robot-server/mqttBackend/node_modules/node-ghk ]; 
   cd ..
 fi
 
+
 ## build mqtt backend to be ready to run
 three_dot_animate "Building mqtt backend"
 
@@ -67,6 +68,7 @@ cd ~/_projects/elderly-robot-server/mqttBackend/
 npm run build
 
 echo "DONE building mqtt backend."
+
 
 ## build goGUI to be ready to run
 three_dot_animate "Building go GUI app"
@@ -84,10 +86,14 @@ cd ~/_projects/elderly-robot-server/ServiceInstaller
 npm install
 sudo node installKeyboard.js
 # add ExecStartPre=/bin/sleep 30 to mqttkeyboard.service
-sudo sed -i 's/\[Service\]/\[Service\]\nExecStartPre=\/bin\/sleep 30/' /etc/systemd/system/mqttkeyboard.service
+if ! grep -R "ExecStartPre=" /etc/systemd/system/mqttkeyboard.service;
+then
+  sudo sed -i 's/\[Service\]/\[Service\]\nExecStartPre=\/bin\/sleep 30/' /etc/systemd/system/mqttkeyboard.service
+fi
 # enable service to let it auto start
 sudo systemctl enable mqttkeyboard.service
 echo "mqttkeyboard.service is enabled."
+
 
 ## install dependencies for video recorder/manager
 three_dot_animate "Installing dependencies for videoRecorder and videoManager"
@@ -100,6 +106,7 @@ go get github.com/jinzhu/gorm
 go get github.com/mattn/go-sqlite3
 echo "DONE installing videoManager dependencies."
 
+
 ## build video manager
 three_dot_animate "Building video manager"
 
@@ -108,11 +115,13 @@ go build -o build/videoManager
 
 echo "DONE building videoManager."
 
+
 ## symlink mainScript.sh from elderly-robot-server to ~/_scripts and add to cronjob later
 three_dot_animate "Symlinking mainScript.sh to ~/_scripts"
 ln -s ~/_projects/elderly-robot-server/bashScripts/mainScript.sh ~/_scripts/mainScript.sh
 
 echo "DONE symlinking."
+
 
 ## add cron job to start everything automatically
 echo "From here you will need to do it yourself."
