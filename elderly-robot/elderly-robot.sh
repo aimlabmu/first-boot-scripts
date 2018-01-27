@@ -16,12 +16,15 @@ go get github.com/eclipse/paho.mqtt.golang
 go get github.com/fogleman/gg
 
 ## Cloning elderly repo [input password required]
-three_dot_animate "Cloning elderly repo [input password required]"
+three_dot_animate "Cloning elderly repo [input password required] / or pull if the repo exists"
 
 projDir=/home/pi/_projects/elderly-robot-server
 
 if [ ! -d $projDir ]; then
   git clone https://tulakann@bitbucket.org/otalbs/elderly-robot-server.git $projDir
+else 
+  cd $projDir
+  git pull origin master
 fi
 
 ## Install npm dependencies
