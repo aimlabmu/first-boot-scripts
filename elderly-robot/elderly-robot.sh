@@ -76,3 +76,17 @@ echo "DONE building go GUI"
 ## make mqtt backend work as a service
 ## configure mqtt service
 ## add cron job to start everything automatically
+## install dependencies for video recorder/manager
+## build video manager
+sudo apt-get install rabbitmq-server
+sudo pip3 install Celery
+
+go get -u golang.org/x/sys/...
+go get github.com/fsnotify/fsnotify
+go get github.com/jinzhu/gorm
+go get github.com/mattn/go-sqlite3
+
+go build *
+
+./videoManager
+```
