@@ -2,9 +2,6 @@
 
 source ./common
 
-# pull the latest update of this repo
-git pull origin master
-
 ## raspi-config
 echo 'Please set these up:
   - Boot Options

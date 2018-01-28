@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# auto update every time script is run
+if [[ $PWD =~ 'first-boot-scripts' ]];
+then 
+    git pull origin master
+else
+    cd ~/_scripts/first-boot-scripts
+    git pull origin master
+fi
+
 # https://askubuntu.com/questions/623933/how-to-create-a-rotation-animation-using-shell-script
 three_dot_animate() {
     echo -en "$1." "\r"

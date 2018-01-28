@@ -118,7 +118,13 @@ echo "DONE building videoManager."
 
 ## symlink mainScript.sh from elderly-robot-server to ~/_scripts and add to cronjob later
 three_dot_animate "Symlinking mainScript.sh to ~/_scripts"
-ln -s ~/_projects/elderly-robot-server/bashScripts/mainScript.sh ~/_scripts/mainScript.sh
+
+if [ ! -e ~/_scripts/mainScript.sh ];
+then
+  ln -s ~/_projects/elderly-robot-server/bashScripts/mainScript.sh ~/_scripts/mainScript.sh
+else
+  echo "mainScript.sh is already symlinked, skipped."
+fi
 
 echo "DONE symlinking."
 
