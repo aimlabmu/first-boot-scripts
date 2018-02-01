@@ -84,7 +84,13 @@ three_dot_animate "Installing mqttBackend service"
 
 cd ~/_projects/elderly-robot-server/ServiceInstaller
 npm install
-sudo node installKeyboard.js
+
+# if mqttkeyboard is not yet installed, install first
+if ! -e /etc/systemd/system/mqttkeyboard.service;
+then
+  sudo node installKeyboard.js
+fi
+
 # add ExecStartPre=/bin/sleep 30 to mqttkeyboard.service
 if ! grep -R "ExecStartPre=" /etc/systemd/system/mqttkeyboard.service;
 then
@@ -130,6 +136,10 @@ echo "DONE symlinking."
 
 
 ## add cron job to start everything automatically
+echo ""
+echo ""
+echo "===================="
+echo ""
 echo "From here you will need to do it yourself."
 echo "But don't worry, we have a clue for you."
 echo "---- FOCUS HERE ----"
@@ -138,3 +148,6 @@ echo "Then put following line in the bottom of the file:"
 echo "'@reboot bash /home/pi/_scripts/mainScript.sh 2>> /home/pi/cronlog.txt'"
 echo "--------------------"
 echo "And finally reboot the robot, you should be good to go. Good Luck."
+echo ""
+echo "===================="
+echo ""
