@@ -14,14 +14,14 @@ else
   git pull origin master
 fi
 
-log 'building systems-server'
+# log 'building systems-server'
 cd $projDir/systems-server
 npm install && npm run build
 
-log 'building robot display'
+# log 'building robot display'
 cd $projDir/robot-display
 npm install && npm run package-linux
 
-log 'building web server'
+# log 'building web server'
 cd $projDir/web-server
 npm install
