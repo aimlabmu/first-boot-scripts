@@ -2,8 +2,11 @@
 
 source ../common
 
+# install required package
+sudo apt-get install liblirc-dev
+
 ## Cloning meedee-rpi repo [input password required]
-three_dot_animate "Cloning meedee-rpi repo [input password required] / or pull if the repo exists"
+three_dot_animate "Cloning/Pulling meedee-rpi [input password required]"
 
 projDir=/home/pi/_projects/meedee-rpi
 
@@ -14,14 +17,11 @@ else
   git pull origin master
 fi
 
-# log 'building systems-server'
-cd $projDir/systems-server
-npm install && npm run build
+# cd $projDir/systems-server
+# npm install && npm run build
 
-# log 'building robot display'
-cd $projDir/robot-display
-npm install && npm run package-linux
+# cd $projDir/robot-display
+# npm install && npm run package-linux
 
-# log 'building web server'
-cd $projDir/web-server
-npm install
+# cd $projDir/web-server
+# npm install
