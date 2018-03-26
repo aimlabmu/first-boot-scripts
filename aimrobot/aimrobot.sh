@@ -2,6 +2,9 @@
 
 source ../common
 
+## install lirc
+./install_lirc.sh
+
 ## define path
 projDir=/home/pi/_projects/meedee-rpi
 
