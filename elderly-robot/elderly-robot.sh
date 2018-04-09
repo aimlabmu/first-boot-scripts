@@ -21,7 +21,7 @@ three_dot_animate "Cloning elderly repo [input password required] / or pull if t
 projDir=/home/pi/_projects/elderly-robot-server
 
 if [ ! -d $projDir ]; then
-  git clone https://tulakann@bitbucket.org/otalbs/elderly-robot-server.git $projDir
+  git clone https://aimlabmu@bitbucket.org/aimlabmu/elderly-robot-server.git $projDir
 else 
   cd $projDir
   git pull origin master
