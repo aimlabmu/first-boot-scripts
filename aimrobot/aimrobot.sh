@@ -20,7 +20,7 @@ sudo setcap cap_net_raw+eip $(eval readlink -f `which node`)
 ## Cloning or pulling meedee-rpi repo [input password required]
 if [ ! -d $projDir ]; then
   three_dot_animate "Cloning meedee-rpi [input password required]"
-  git clone -b rpi-testing https://aimlabmu@bitbucket.org/aimlabmu/meedee-rpi.git $projDir
+  git clone -b master https://aimlabmu@bitbucket.org/aimlabmu/meedee-rpi.git $projDir
 else 
   cd $projDir
   three_dot_animate "Pulling meedee-rpi [input password required]"
